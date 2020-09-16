@@ -1,0 +1,28 @@
+{
+  "products": [
+    { 
+      "id": 1,
+      "name": "Moto G5",
+      "description": "Overall, the Moto G5 is a good overall smartphone, and has something to offer for everyone. It isn’t the most well-built smartphone, but is definitely one of the most ergonomic.",
+      "manufacturer": "Lenovo",
+      "price": 13000,
+      "quantity": 3
+    },
+    {
+      "id": 2,
+      "name": "Racold Geyser",
+      "description": "Nothing relaxes and rejuvenates like a nice shower. Take home this Racold Instant Water Geyser and pamper yourself with a nice hot shower. You no longer will have to wait for the water to heat up.",
+      "manufacturer": "Lenovo",
+      "price": 13000,
+      "quantity": 3
+    },
+    {
+      "id": 3,
+      "name": "Dell Inspiron",
+      "description": "A 14 inch Full HD LED Backlit IPS Touch Display with Finger Print Sensor for Faster System Access",
+      "manufacturer": "Lenovo",
+      "price": 13000,
+      "quantity": 3
+    }
+  ]
+}

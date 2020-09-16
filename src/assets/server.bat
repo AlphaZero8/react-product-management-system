@@ -1,0 +1,1 @@
+json-server -w products.json -p 5000
