@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 class ProductApi {
   static getAllProducts(cb) {
@@ -29,10 +29,18 @@ class ProductApi {
       price: productPrice,
       quantity: productQuantity,
     };
-    console.log(params);
     axios
       .post('http://localhost:5000/products', params)
       .then((res) => cb(res.data))
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+  static deleteProduct(id, cb) {
+    axios
+      .delete(`http://localhost:5000/products/${id}`)
+      .then(cb(id))
       .catch((err) => {
         throw err;
       });

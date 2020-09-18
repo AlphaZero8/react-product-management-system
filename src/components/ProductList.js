@@ -1,7 +1,7 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 
-import ProductEntry from './ProductEntry';
+import ProductEntry from './ProductEntry/ProductEntry';
 
 const ProductList = (props) => {
   let productEntries = props.products.map((product) => (
@@ -13,6 +13,7 @@ const ProductList = (props) => {
       manufacturer={product.manufacturer}
       price={product.price}
       quantity={product.quantity}
+      deleteProduct={props.onDelete}
     />
   ));
 

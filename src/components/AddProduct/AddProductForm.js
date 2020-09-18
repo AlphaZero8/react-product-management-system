@@ -1,6 +1,7 @@
 import React from 'react';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import {withRouter} from 'react-router-dom';
 
 import './AddProductForm.css';
 
@@ -103,7 +104,7 @@ const AddProductForm = ({ errors, touched, isSubmitting }) => {
   );
 };
 
-const formikAddProductForm = withFormik({
+const formikAddProductForm = withRouter(withFormik({
   mapPropsToValues({ name, description, manufacturer, price, quantity }) {
     return {
       productName: name || '',
@@ -128,8 +129,9 @@ const formikAddProductForm = withFormik({
     resetForm();
     setSubmitting(false);
     console.log(props.onAdd);
-    props.onAdd(values);
+    props.onAddProduct(values);
+    props.history.push('/');
   },
-})(AddProductForm);
+})(AddProductForm));
 
 export default formikAddProductForm;

@@ -1,0 +1,3 @@
+export const LOAD_ALL_PRODUCTS = 'LOAD_ALL_PRODUCTS';
+export const ADD_PRODUCT = 'ADD_PRODUCT';
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';

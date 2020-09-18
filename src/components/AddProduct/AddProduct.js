@@ -1,14 +1,19 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import AddProductForm from './AddProductForm';
-import ActionsContext from '../../context/actionsContext';
+import * as actionCreators from '../../actions/actions';
 
-const AddProduct = () => {
-  return (
-    <ActionsContext.Consumer>
-      {(context) => <AddProductForm onAdd={(product) => context.onAddProduct(product)}/>}
-    </ActionsContext.Consumer>
-  );
+const AddProduct = (props) => {
+  return <AddProductForm onAddProduct={(product) => {props.addProductHandler(product)}}/>;
 };
 
-export default AddProduct;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addProductHandler: (product) => {
+      dispatch(actionCreators.addProduct(product))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddProduct);
