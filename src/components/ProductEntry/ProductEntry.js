@@ -2,11 +2,13 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { connect } from 'react-redux';
+import { LinkContainer } from 'react-router-bootstrap';
 
 import * as actionCreators from '../../actions/actions';
 import './ProductEntry.css';
 
 const ProductEntry = (props) => {
+  let editProductPath = `edit-product/${props.id}`;
   return (
     <tr>
       <td>{props.id}</td>
@@ -16,11 +18,9 @@ const ProductEntry = (props) => {
       <td>{props.price}</td>
       <td>{props.quantity}</td>
       <td>
-        <FontAwesomeIcon
-          icon={faEdit}
-          className="icon"
-          style={{ marginRight: '15px' }}
-        />
+        <LinkContainer to={editProductPath} style={{ marginRight: '15px' }}>
+          <FontAwesomeIcon icon={faEdit} className="icon" />
+        </LinkContainer>
         <FontAwesomeIcon
           icon={faTrashAlt}
           className="icon"

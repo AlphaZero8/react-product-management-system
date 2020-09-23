@@ -1,3 +1,20 @@
 {
-  "products": []
+  "products": [
+    {
+      "name": "Dell Inspiron",
+      "description": "A laptop brand",
+      "manufacturer": "Dell company",
+      "price": 50000,
+      "quantity": 99,
+      "id": "e199d4b3-6efa-4fe8-b0ac-57bd5a8c114a"
+    },
+    {
+      "name": "Galaxy M31",
+      "description": "A smartphone brand ",
+      "manufacturer": "Samsung - South Korea",
+      "price": 15000,
+      "quantity": 7,
+      "id": "5d6397c0-fa64-4539-960b-2fe3ea56b868"
+    }
+  ]
 }

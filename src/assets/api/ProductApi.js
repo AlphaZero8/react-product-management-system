@@ -45,6 +45,32 @@ class ProductApi {
         throw err;
       });
   }
+
+  static updateProduct(
+    {
+      productName,
+      productDescription,
+      productManufacturer,
+      productPrice,
+      productQuantity,
+    },
+    id,
+    cb
+  ) {
+    const params = {
+      name: productName,
+      description: productDescription,
+      manufacturer: productManufacturer,
+      price: productPrice,
+      quantity: productQuantity,
+    };
+    axios
+      .put(`http://localhost:5000/products/${id}`, params)
+      .then((res) => cb(res.data))
+      .catch((err) => {
+        throw err;
+      });
+  }
 }
 
 export default ProductApi;

@@ -45,3 +45,18 @@ export const deleteProduct = (id) => {
     });
   };
 };
+
+const reviseProduct = (product) => {
+  return {
+    type: actionTypes.UPDATE_PRODUCT,
+    data: product
+  };
+};
+
+export const updateProduct = (updatedProduct, id) => {
+  return (dispatch) => {
+    ProductApi.updateProduct(updatedProduct, id, response => {
+      dispatch(reviseProduct(response));
+    });
+  };
+}

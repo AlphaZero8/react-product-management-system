@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar, NavDropdown } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
-import { BrowserRouter as Router } from 'react-router-dom';
+// import Button from 'react-bootstrap/Button';
+import { BrowserRouter as Router, withRouter } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import Routes from './Routes';
+import './ProductEntry/ProductEntry.css';
 
-const MyNavbar = () => {
+const MyNavbar = (props) => {
+  let [disabled, setDisabled] = useState(false);
+  const { location } = props;
+  if (
+    location.pathname.match('/add-product') ||
+    location.pathname.match('/edit-product')
+  ) {
+    setDisabled(true);
+  }
+
   return (
     <div>
       <Router>
@@ -45,10 +57,12 @@ const MyNavbar = () => {
             <Form inline>
               <FormControl
                 type="text"
-                placeholder="Search"
+                placeholder="Search Product Name"
                 className="mr-sm-2"
+                disabled={disabled}
               />
-              <Button variant="outline-success">Search</Button>
+              <FontAwesomeIcon icon={faSearch} className="icon" style={{marginLeft: '15px'}} />
+              {/* <Button variant="outline-success" disabled={disabled}>Search</Button> */}
             </Form>
           </Navbar.Collapse>
         </Navbar>
@@ -58,4 +72,4 @@ const MyNavbar = () => {
   );
 };
 
-export default MyNavbar;
+export default withRouter(MyNavbar);

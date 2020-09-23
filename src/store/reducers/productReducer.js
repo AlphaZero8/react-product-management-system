@@ -19,6 +19,11 @@ const productReducer = (state = initialState, action) => {
       );
       return loadObject({ products: filteredArray });
 
+    case actionTypes.UPDATE_PRODUCT:
+      const {products} = loadObject(state);
+      const rqProductIndex = products.findIndex(product => product.id === action.data.id);
+      products[rqProductIndex] = {...action.data};
+      return {products};
     default:
       return state;
   }

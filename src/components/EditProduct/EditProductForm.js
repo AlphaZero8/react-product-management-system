@@ -3,19 +3,17 @@ import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { withRouter } from 'react-router-dom';
 
-import './AddProductForm.css';
-
-const AddProductForm = ({ errors, touched, isSubmitting }) => {
+const EditProductForm = ({ errors, touched, isSubmitting, values }) => {
   const style = {
     color: 'red',
   };
 
-  // const submitHandler = () => {
-  //   ProductHome._onChange();
-  // };
-
   return (
     <Form>
+      {/* <Prompt
+        message="Are you sure you want to leave this page?"
+        when={values.blockRouting}
+      /> */}
       <br />
       <div className="form-group row">
         <label htmlFor="productName" className="col-sm-2 col-form-label">
@@ -104,31 +102,45 @@ const AddProductForm = ({ errors, touched, isSubmitting }) => {
         </div>
       </div>
       <div className="form-group row">
-          <div className="col-sm-2">
-            <button
-              className="btn btn-primary"
-              type="submit"
-              disabled={isSubmitting}
-            >
-              Add
-            </button>
-          </div>
+        <div className="col-sm-2">
+          <button
+            className="btn btn-primary"
+            type="submit"
+            disabled={isSubmitting}
+          >
+            Save
+          </button>
         </div>
+        <div className="col-sm-1">
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={values.goBack}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
     </Form>
   );
 };
 
-const formikAddProductForm = withRouter(
+const formikEditProductForm = withRouter(
   withFormik({
-    mapPropsToValues({ name, description, manufacturer, price, quantity }) {
+    mapPropsToValues({
+      product: { name, description, manufacturer, price, quantity },
+      goBack,
+    }) {
       return {
         productName: name || '',
         productDescription: description || '',
         productManufacturer: manufacturer || '',
         productQuantity: quantity || '',
         productPrice: price || '',
+        goBack: goBack || null,
       };
     },
+    enableReinitialize: true,
     validationSchema: Yup.object().shape({
       productName: Yup.string().required('Product name is required!'),
       productDescription: Yup.string().required(
@@ -143,12 +155,13 @@ const formikAddProductForm = withRouter(
       productPrice: Yup.number().required('Product price is required!'),
     }),
     handleSubmit(values, { resetForm, setSubmitting, props }) {
+      // props.setBlockRouting(true);
       resetForm();
       setSubmitting(false);
-      props.onAddProduct(values);
+      props.onUpdateProduct(values);
       props.history.push('/');
     },
-  })(AddProductForm)
+  })(EditProductForm)
 );
 
-export default formikAddProductForm;
+export default formikEditProductForm;

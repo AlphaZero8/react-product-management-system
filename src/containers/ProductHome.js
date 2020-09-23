@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import ProductList from '../components/ProductList';
+import ProductList from '../components/ProductList/ProductList';
 import * as actionTypes from '../actions/actionTypes';
 
 class ProductHome extends Component {
