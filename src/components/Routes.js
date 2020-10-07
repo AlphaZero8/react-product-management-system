@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import AddProduct from './AddProduct/AddProduct';
 import ProductHome from '../containers/ProductHome';
 import EditProduct from './EditProduct/EditProduct';
+import SignUp from './SignUp/SignUpForm';
+import Login from './Login/Login';
 
 const Routes = () => {
   return (
@@ -15,6 +17,8 @@ const Routes = () => {
         path="/edit-product/:id"
         render={(props) => <EditProduct products={props.products} {...props} />}
       />
+      <Route path="/sign-up" component={SignUp} />
+      <Route path="/log-in" component={Login} />
     </Switch>
   );
 };

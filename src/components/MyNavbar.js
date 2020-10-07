@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Navbar, NavDropdown } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
-// import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button';
 import { BrowserRouter as Router, withRouter } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,6 +11,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import Routes from './Routes';
 import './ProductEntry/ProductEntry.css';
+import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
 
 const MyNavbar = (props) => {
   let [disabled, setDisabled] = useState(false);
@@ -40,7 +41,13 @@ const MyNavbar = (props) => {
               <LinkContainer to="/top-viewed">
                 <Nav.Link>Top Viewed</Nav.Link>
               </LinkContainer>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+              <LinkContainer to="/sign-up" style={{marginLeft: '200px'}}>
+                <Button variant="outline-primary">Sign up</Button>
+              </LinkContainer>{' '}
+              <LinkContainer to="/log-in" style={{marginLeft: '20px'}}>
+                <Button variant="outline-success">Log In</Button>
+              </LinkContainer>
+              {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
                   Another action
@@ -52,7 +59,7 @@ const MyNavbar = (props) => {
                 <NavDropdown.Item href="#action/3.4">
                   Separated link
                 </NavDropdown.Item>
-              </NavDropdown>
+              </NavDropdown> */}
             </Nav>
             <Form inline>
               <FormControl
@@ -61,7 +68,17 @@ const MyNavbar = (props) => {
                 className="mr-sm-2"
                 disabled={disabled}
               />
-              <FontAwesomeIcon icon={faSearch} className="icon" style={{marginLeft: '15px'}} />
+              <FontAwesomeIcon
+                icon={faSearch}
+                className="icon"
+                style={{ marginLeft: '15px' }}
+              />
+              <FontAwesomeIcon
+                icon={faUserCircle}
+                className="icon"
+                style={{ marginLeft: '15px' }}
+                title="View Profile"
+              />
               {/* <Button variant="outline-success" disabled={disabled}>Search</Button> */}
             </Form>
           </Navbar.Collapse>

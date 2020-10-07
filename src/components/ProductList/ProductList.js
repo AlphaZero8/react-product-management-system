@@ -1,8 +1,10 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
+import { connect } from 'react-redux';
 
 import ProductEntry from '../ProductEntry/ProductEntry';
 import './ProductList.css';
+import CustomizeTable from '../CustomizeTable/CustomizeTable';
 
 const ProductList = (props) => {
   let toBeRendered;
@@ -23,24 +25,37 @@ const ProductList = (props) => {
       />
     ));
     toBeRendered = (
-      <Table striped bordered hover variant="dark">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Manufacturer</th>
-            <th>Price/Unit</th>
-            <th>Quantity</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>{productEntries}</tbody>
-      </Table>
+      <div>
+        <CustomizeTable />
+        <Table striped bordered hover variant="dark">
+          <thead>
+            <tr>
+              <th>ID</th>
+              {props.name ? <th>Name</th> : null}
+              {props.description ? <th>Description</th> : null}
+              {props.manufacturer ? <th>Manufacturer</th> : null}
+              {props.price ? <th>Price/Unit</th> : null}
+              {props.quantity ? <th>Quantity</th> : null}
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>{productEntries}</tbody>
+        </Table>
+      </div>
     );
   }
 
   return <div>{toBeRendered}</div>;
 };
 
-export default ProductList;
+const mapStateToProps = (state) => {
+  return {
+    name: state.customize.name,
+    description: state.customize.description,
+    manufacturer: state.customize.manufacturer,
+    price: state.customize.price,
+    quantity: state.customize.quantity,
+  };
+};
+
+export default connect(mapStateToProps)(ProductList);

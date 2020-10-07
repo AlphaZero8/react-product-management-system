@@ -12,23 +12,43 @@ const ProductEntry = (props) => {
   return (
     <tr>
       <td>{props.id}</td>
-      <td>{props.name}</td>
-      <td>{props.description}</td>
-      <td>{props.manufacturer}</td>
-      <td>{props.price}</td>
-      <td>{props.quantity}</td>
+      {props.pName ? <td>{props.name}</td> : null}
+      {props.pDescription ? <td>{props.description}</td> : null}
+      {props.pManufacturer ? <td>{props.manufacturer}</td> : null}
+      {props.pPrice ? <td>{props.price}</td> : null}
+      {props.pQuantity ? <td>{props.quantity}</td> : null}
       <td>
         <LinkContainer to={editProductPath} style={{ marginRight: '15px' }}>
-          <FontAwesomeIcon icon={faEdit} className="icon" />
+          {props.isLoggedIn ? (
+            <FontAwesomeIcon icon={faEdit} className="icon" title="Edit" />
+          ) : (
+            <FontAwesomeIcon
+              icon={faEdit}
+              className="fa-disabled"
+              title="Edit"
+            />
+          )}
         </LinkContainer>
         <FontAwesomeIcon
           icon={faTrashAlt}
           className="icon"
+          title="Delete"
           onClick={() => props.deleteProduct(props.id)}
         />
       </td>
     </tr>
   );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    pName: state.customize.name,
+    pDescription: state.customize.description,
+    pManufacturer: state.customize.manufacturer,
+    pPrice: state.customize.price,
+    pQuantity: state.customize.quantity,
+    isLoggedIn: state.user.isLoggedIn,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -39,4 +59,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(ProductEntry);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductEntry);

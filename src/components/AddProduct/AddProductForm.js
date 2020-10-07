@@ -145,6 +145,7 @@ const formikAddProductForm = withRouter(
     handleSubmit(values, { resetForm, setSubmitting, props }) {
       resetForm();
       setSubmitting(false);
+      console.dir(props);
       props.onAddProduct(values);
       props.history.push('/');
     },

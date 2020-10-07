@@ -15,17 +15,11 @@
       "price": 15000,
       "quantity": 7,
       "id": "5d6397c0-fa64-4539-960b-2fe3ea56b868"
-    },
-    {
-      "id": "73570f24-bd60-4b0a-8d10-4eba0aee1484",
-      "name": "Moto G5 Plus",
-      "description": "A smartphone",
-      "manufacturer": "Lenovo",
-      "price": 14500,
-      "quantity": 5
     }
-  ],
+  ], 
   "users": [
-    {}
+    {
+      
+    }
   ]
 }
