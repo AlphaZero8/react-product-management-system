@@ -30,7 +30,7 @@ const Login = ({ errors, touched, isSubmitting }) => {
                     className="form-control"
                     type="text"
                     name="userId"
-                    placeholder="Please enter your userId"
+                    placeholder="Please enter your Email"
                     autoFocus
                   />
                   {touched.userId && errors.userId && (
@@ -48,7 +48,7 @@ const Login = ({ errors, touched, isSubmitting }) => {
                     className="form-control"
                     type="password"
                     name="password"
-                    placeholder="Please enter Password"
+                    placeholder="Please enter your Password"
                   />
                   {touched.password && errors.password && (
                     <p style={style}>{errors.password}</p>
@@ -88,7 +88,7 @@ const formikLogin = withRouter(
     validationSchema: Yup.object().shape({
       userId: Yup.string()
         .email('Please enter a valid userId!')
-        .required('userId is required!'),
+        .required('User ID is required!'),
 
       password: Yup.string().required('Password is required!'),
     }),

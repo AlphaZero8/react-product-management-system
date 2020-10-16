@@ -5,7 +5,15 @@ import SignUpForm from './SignUpForm';
 import * as actionCreators from '../../actions/actions';
 
 const SignUp = (props) => {
-  return <SignUpForm onRegister={(data) => props.registerBtnHandler(data)}/>;
+  const emails = props.users.map(user => user.email);
+  const mobiles = props.users.map(user => user.mobile);
+  return <SignUpForm onRegister={(data) => props.registerBtnHandler(data)} emails={emails} mobiles={mobiles} />;
+};
+
+const mapStateToProps = (state) => {
+  return {
+    users: state.user.users,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -16,4 +24,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

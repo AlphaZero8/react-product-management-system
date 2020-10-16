@@ -9,9 +9,10 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import Routes from './Routes';
-import './ProductEntry/ProductEntry.css';
+import Routes from '../Routes';
+import '../ProductEntry/ProductEntry.css';
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
+import './MyNavbar.css';
 
 const MyNavbar = (props) => {
   let [disabled, setDisabled] = useState(false);
@@ -41,11 +42,15 @@ const MyNavbar = (props) => {
               <LinkContainer to="/top-viewed">
                 <Nav.Link>Top Viewed</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/sign-up" style={{marginLeft: '200px'}}>
-                <Button variant="outline-primary">Sign up</Button>
+              <LinkContainer to="/sign-up">
+                <Button variant="outline-primary" className="main-nav__item">
+                  Sign up
+                </Button>
               </LinkContainer>{' '}
-              <LinkContainer to="/log-in" style={{marginLeft: '20px'}}>
-                <Button variant="outline-success">Log In</Button>
+              <LinkContainer to="/log-in">
+                <Button variant="outline-success" className="main-nav__item">
+                  Log In
+                </Button>
               </LinkContainer>
               {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -70,13 +75,11 @@ const MyNavbar = (props) => {
               />
               <FontAwesomeIcon
                 icon={faSearch}
-                className="icon"
-                style={{ marginLeft: '15px' }}
+                className="icon main-nav__item"
               />
               <FontAwesomeIcon
                 icon={faUserCircle}
-                className="icon"
-                style={{ marginLeft: '15px' }}
+                className="icon main-nav__item"
                 title="View Profile"
               />
               {/* <Button variant="outline-success" disabled={disabled}>Search</Button> */}

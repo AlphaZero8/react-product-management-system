@@ -3,9 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import './App.css';
-import MyNavbar from './components/MyNavbar';
+import MyNavbar from './components/MyNavbar/MyNavbar';
 
-function App() {
+const App = () => {
   return (
     <Router>
       <div className="App">

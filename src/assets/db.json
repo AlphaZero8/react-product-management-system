@@ -9,17 +9,32 @@
       "id": "e199d4b3-6efa-4fe8-b0ac-57bd5a8c114a"
     },
     {
+      "id": "06ba3427-c8de-4dc9-96d1-d3fad5afd669",
       "name": "Galaxy M31",
-      "description": "A smartphone brand ",
-      "manufacturer": "Samsung - South Korea",
-      "price": 15000,
-      "quantity": 7,
-      "id": "5d6397c0-fa64-4539-960b-2fe3ea56b868"
+      "description": "A smartphone",
+      "manufacturer": "Samsung",
+      "price": 16500,
+      "quantity": 8
     }
-  ], 
+  ],
   "users": [
     {
-      
+      "id": "641a5153-075b-4685-ad2c-383dd450a815",
+      "firstName": "V",
+      "lastName": "B",
+      "email": "v@example.com",
+      "password": "Viraj@08",
+      "location": "Pune",
+      "mobile": 1234567890
+    },
+    {
+      "id": "036416e6-1e0c-435f-812f-674ce30f00e7",
+      "firstName": "Viraj",
+      "lastName": "Bafana",
+      "email": "v@abc.com",
+      "password": "Balidaan@08",
+      "location": "Pune",
+      "mobile": 1212121212
     }
   ]
 }

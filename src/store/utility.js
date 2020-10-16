@@ -1,15 +1,30 @@
-export const loadObject = (oldState) => {
+export const loadProducts = (oldState) => {
   const productsArray = oldState.products.map((product) => ({ ...product }));
   return {
     products: productsArray,
   };
 };
 
-export const updateObject = (oldState, newState) => {
+export const loadUsers = (oldState) => {
+  const usersArray = oldState.users.map((user) => ({ ...user }));
+  return {
+    users: usersArray,
+  };
+};
+
+export const updateProducts = (oldState, newState) => {
   const clonedArray = oldState.products.map((product) => ({ ...product }));
   const newArray = clonedArray.concat([newState]);
   return {
     products: newArray,
+  };
+};
+
+export const addUser = (oldState, newState) => {
+  const clonedArray = oldState.users.map((user) => ({ ...user }));
+  const newArray = clonedArray.concat([newState]);
+  return {
+    users: newArray,
   };
 };
 
@@ -36,7 +51,7 @@ export const toggleCheckBoxHandler = (oldState, field, otherValues) => {
         name: !oldState.name,
       };
 
-      case 'description':
+    case 'description':
       if (toggleAll) {
         return {
           ...oldState,
@@ -49,7 +64,7 @@ export const toggleCheckBoxHandler = (oldState, field, otherValues) => {
         description: !oldState.description,
       };
 
-      case 'manufacturer':
+    case 'manufacturer':
       if (toggleAll) {
         return {
           ...oldState,
@@ -62,7 +77,7 @@ export const toggleCheckBoxHandler = (oldState, field, otherValues) => {
         manufacturer: !oldState.manufacturer,
       };
 
-      case 'price':
+    case 'price':
       if (toggleAll) {
         return {
           ...oldState,
@@ -75,7 +90,7 @@ export const toggleCheckBoxHandler = (oldState, field, otherValues) => {
         price: !oldState.price,
       };
 
-      case 'quantity':
+    case 'quantity':
       if (toggleAll) {
         return {
           ...oldState,

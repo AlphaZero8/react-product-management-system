@@ -1,10 +1,25 @@
 import UserApi from '../assets/api/UserApi';
-import { REGISTER_USER } from './actionTypes';
+import * as actionTypes from './actionTypes';
+
+const dispatchUsers = (allUsers) => {
+  return {
+    type: actionTypes.LOAD_ALL_USERS,
+    payload: allUsers,
+  };
+};
+
+export const loadAllUsers = () => {
+  return (dispatch) => {
+    UserApi.loadAllUsers((users) => {
+      dispatch(dispatchUsers(users));
+    });
+  };
+};
 
 const addUser = (userData) => {
   return {
-    type: REGISTER_USER,
-    payload: userData
+    type: actionTypes.REGISTER_USER,
+    payload: userData,
   };
 };
 

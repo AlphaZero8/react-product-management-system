@@ -1,18 +1,19 @@
 import * as actionTypes from '../../actions/actionTypes';
+import { loadUsers, addUser } from '../utility';
 const initialState = {
-  isLoggedIn: false,
   users: [],
 };
 
-const customerReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.LOAD_ALL_USERS:
+      return loadUsers({users: action.payload});
+
     case actionTypes.REGISTER_USER:
-      let clonedArray = state.users.map((user) => ({ ...user }));
-      let newArray = clonedArray.concat([action.payload]);
-      return newArray;
+      return addUser(state, action.payload);
     default:
       return state;
   }
 };
 
-export default customerReducer;
+export default userReducer;

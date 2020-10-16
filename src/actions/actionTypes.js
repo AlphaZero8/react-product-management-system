@@ -3,4 +3,5 @@ export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 export const TOGGLE_FIELD = 'TOGGLE_FIELD';
+export const LOAD_ALL_USERS = 'LOAD_ALL_USERS';
 export const REGISTER_USER = 'REGISTER_USER';

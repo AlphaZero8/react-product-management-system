@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import AddProduct from './AddProduct/AddProduct';
 import ProductHome from '../containers/ProductHome';
 import EditProduct from './EditProduct/EditProduct';
-import SignUp from './SignUp/SignUpForm';
+import SignUp from './SignUp/SignUp';
 import Login from './Login/Login';
 
 const Routes = () => {

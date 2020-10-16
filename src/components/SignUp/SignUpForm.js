@@ -6,7 +6,7 @@ import { withRouter, Link } from 'react-router-dom';
 
 import './SignUp.css';
 
-const SignUp = ({ errors, touched, isSubmitting }) => {
+const SignUp = ({ errors, touched, isSubmitting, values }) => {
   const style = {
     color: 'red',
   };
@@ -58,7 +58,6 @@ const SignUp = ({ errors, touched, isSubmitting }) => {
                 </label>
                 <div className="col-sm-8">
                   <Field
-                    size="40"
                     className="form-control"
                     type="text"
                     name="email"
@@ -69,6 +68,7 @@ const SignUp = ({ errors, touched, isSubmitting }) => {
                   )}
                 </div>
               </div>
+
               <div className="form-group row">
                 <label htmlFor="password" className="col-sm-4 col-form-label">
                   Password
@@ -79,7 +79,7 @@ const SignUp = ({ errors, touched, isSubmitting }) => {
                     className="form-control"
                     type="password"
                     name="password"
-                    placeholder="Please enter Password"
+                    placeholder="Please enter a Password"
                   />
                   {touched.password && errors.password && (
                     <p style={style}>{errors.password}</p>
@@ -164,8 +164,46 @@ const SignUp = ({ errors, touched, isSubmitting }) => {
   );
 };
 
+const lowercaseRegex = /(?=.*[a-z])/;
+const uppercaseRegex = /(?=.*[A-Z])/;
+const numberRegex = /(?=.*[0-9])/;
+const specialCharRegex = /(?=.*[!@#$%^&*])/;
+const mobileRegex = /^(\+\d{1,3}[- ]?)?\d{10}$/;
+
+const validationSchema = Yup.object({
+  firstName: Yup.string().required('First Required!').min(2, 'Too short!'),
+  lastName: Yup.string().required('Last Required!').min(2, 'Too short!'),
+  email: Yup.string()
+    .email('Please enter a valid email!')
+
+    // .notOneOf(emails)
+    .required('Required!'),
+
+  password: Yup.string()
+    .required('Required!')
+    .matches(uppercaseRegex, 'The password should contain an uppercase letter!')
+    .matches(lowercaseRegex, 'The password should contain a lowercase letter!')
+    .matches(
+      specialCharRegex,
+      'The password should contain a special character!'
+    )
+    .matches(numberRegex, 'The password should contain a number!')
+    .min(8, 'The password must be at least 8 characters long!'),
+
+  confirmPassword: Yup.string()
+    .required('Required!')
+    .oneOf([Yup.ref('password'), null], 'The passwords must match'),
+
+  userLocation: Yup.string().required('Required!'),
+  mobile: Yup.string()
+    .required('Required!')
+    .matches(mobileRegex, 'Invalid mobile!'),
+});
+
 const formikSignUp = withRouter(
   withFormik({
+    validationSchema,
+
     mapPropsToValues({
       firstName,
       lastName,
@@ -174,6 +212,8 @@ const formikSignUp = withRouter(
       confirmPassword,
       userLocation,
       mobile,
+      emails,
+      mobiles,
     }) {
       return {
         firstName: firstName || '',
@@ -183,45 +223,31 @@ const formikSignUp = withRouter(
         confirmPassword: confirmPassword || '',
         userLocation: userLocation || '',
         mobile: mobile || '',
+        emails: emails || [],
+        mobiles: mobiles || [],
       };
     },
-    validationSchema: Yup.object().shape({
-      email: Yup.string()
-        .email('Please enter a valid email!')
-        .required('Email is required!'),
 
-      password: Yup.string()
-        .required('Password is required!')
-        .min(
-          8,
-          'The password is too short, it has to be minimum 8 characters long!'
-        )
-        .matches(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
-          'Password should contain an uppercase, a lowercase, a special character and a number!'
-        ),
-
-      confirmPassword: Yup.string()
-        .required('This field is required!')
-        .oneOf([Yup.ref('password'), null], 'Passwords must match'),
-
-      firstName: Yup.string().required('First Name is required!'),
-      lastName: Yup.string().required('Last Name is required!'),
-      userLocation: Yup.string().required('Location is required!'),
-      mobile: Yup.string()
-        .matches(
-          /^(\+\d{1,3}[- ]?)?\d{10}$/,
-          'Please enter a valid Mobile Number!'
-        )
-        .required('Mobile Number is required!'),
-    }),
     handleSubmit(values, { resetForm, setSubmitting, props }) {
       resetForm();
       setSubmitting(false);
-      console.log(typeof props.onRegister);
-      console.dir(props);
-      console.log(values);
+      props.onRegister(values);
       props.history.push('/log-in');
+    },
+    validate: (values, props) => {
+      const errors = {};
+      for (const email of props.emails) {
+        if (values.email === email) {
+          errors.email = 'The email has already been taken!';
+          break;
+        }
+      }
+      for (const mobile of props.mobiles) {
+        if (values.mobile === mobile) {
+          errors.mobile = 'The mobile number is already registered!';
+        }
+      }
+      return errors;
     },
   })(SignUp)
 );
