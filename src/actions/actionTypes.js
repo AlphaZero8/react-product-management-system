@@ -5,3 +5,4 @@ export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 export const TOGGLE_FIELD = 'TOGGLE_FIELD';
 export const LOAD_ALL_USERS = 'LOAD_ALL_USERS';
 export const REGISTER_USER = 'REGISTER_USER';
+export const LOGIN_USER = 'LOGIN_USER';

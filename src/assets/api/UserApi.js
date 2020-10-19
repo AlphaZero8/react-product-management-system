@@ -32,6 +32,15 @@ class UserApi {
         throw err;
       });
   }
+
+  static logUserIn(cb) {
+    axios
+      .get('http://localhost:5000/users')
+      .then((res) => cb(res.data))
+      .catch((err) => {
+        throw err;
+      });
+  }
 }
 
 export default UserApi;

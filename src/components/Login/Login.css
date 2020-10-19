@@ -2,3 +2,13 @@
   float: none;
   margin: 0 auto;
 }
+
+.icon {
+  margin: auto 0;
+}
+
+.icon:hover {
+  transform: scale(1.5);
+  cursor: pointer;
+}
+

@@ -1,18 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { withRouter, Link } from 'react-router-dom';
 
 import './SignUp.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 
 const SignUp = ({ errors, touched, isSubmitting, values }) => {
   const style = {
     color: 'red',
   };
+  const textType = 'text',
+    passwordType = 'password',
+    confirmTextType = 'text',
+    confirmPasswordType = 'password',
+    passField = 'password';
+
+  const [passType, setPassType] = useState(passwordType);
+  const [confirmPassType, setConfirmPassType] = useState(confirmPasswordType);
+  const [showPass, setShowPass] = useState(true);
+  const [showConfirmPass, setShowConfirmPass] = useState(true);
+
+  const forPassField = () => {
+    showBtnHandler(passField);
+  };
+
+  const showBtnHandler = (field = null) => {
+    switch (field) {
+      case passField:
+        if (passType === passwordType) {
+          setPassType(textType);
+          setShowPass(false);
+        } else {
+          setPassType(passwordType);
+          setShowPass(true);
+        }
+        break;
+      default:
+        if (confirmPassType === confirmPasswordType) {
+          setConfirmPassType(confirmTextType);
+          setShowConfirmPass(false);
+        } else {
+          setConfirmPassType(confirmPasswordType);
+          setShowConfirmPass(true);
+        }
+    }
+  };
 
   return (
-    <Card style={{ width: '35rem', margin: '30px auto' }}>
+    <Card style={{ width: '37rem', margin: '30px auto'}}>
       <Card.Body className="col-centered">
         <Card.Title>Sign Up</Card.Title>
         <div className="row">
@@ -73,16 +111,31 @@ const SignUp = ({ errors, touched, isSubmitting, values }) => {
                 <label htmlFor="password" className="col-sm-4 col-form-label">
                   Password
                 </label>
-                <div className="col-sm-8">
+                <div className="col-sm-7">
                   <Field
                     size="40"
                     className="form-control"
-                    type="password"
+                    type={passType}
                     name="password"
                     placeholder="Please enter a Password"
                   />
                   {touched.password && errors.password && (
                     <p style={style}>{errors.password}</p>
+                  )}
+                </div>
+                <div className="col-sm-1 form-control">
+                  {showPass ? (
+                    <FontAwesomeIcon
+                      className="icon"
+                      icon={faEye}
+                      onClick={forPassField}
+                    ></FontAwesomeIcon>
+                  ) : (
+                    <FontAwesomeIcon
+                      className="icon"
+                      icon={faEyeSlash}
+                      onClick={forPassField}
+                    ></FontAwesomeIcon>
                   )}
                 </div>
               </div>
@@ -93,16 +146,31 @@ const SignUp = ({ errors, touched, isSubmitting, values }) => {
                 >
                   Confirm Password
                 </label>
-                <div className="col-sm-8">
+                <div className="col-sm-7">
                   <Field
                     size="40"
                     className="form-control"
-                    type="password"
+                    type={confirmPassType}
                     name="confirmPassword"
                     placeholder="Please re-enter the Password"
                   />
                   {touched.confirmPassword && errors.confirmPassword && (
                     <p style={style}>{errors.confirmPassword}</p>
+                  )}
+                </div>
+                <div className="col-sm-1 form-control">
+                  {showConfirmPass ? (
+                    <FontAwesomeIcon
+                      className="icon"
+                      icon={faEye}
+                      onClick={() => showBtnHandler()}
+                    ></FontAwesomeIcon>
+                  ) : (
+                    <FontAwesomeIcon
+                      className="icon"
+                      icon={faEyeSlash}
+                      onClick={() => showBtnHandler()}
+                    ></FontAwesomeIcon>
                   )}
                 </div>
               </div>
@@ -234,6 +302,7 @@ const formikSignUp = withRouter(
       props.onRegister(values);
       props.history.push('/log-in');
     },
+
     validate: (values, props) => {
       const errors = {};
       for (const email of props.emails) {

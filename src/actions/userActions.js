@@ -30,3 +30,56 @@ export const registerUser = (data) => {
     });
   };
 };
+
+// const login = (allowLogin) => {
+//   return {
+//     type: actionTypes.LOGIN_USER,
+//     payload: allowLogin,
+//   };
+// };
+
+// export const loginUser = ({ userId, password }) => {
+//   let users = [],
+//     pairs;
+//     return dispatch => {
+//       return new Promise((resolve, reject) => {
+
+//         UserApi.logUserIn((allUSers) => {
+//           users = allUSers;
+//           pairs = users.map((user) => {
+//             return [user.email, user.password];
+//           });
+//           for (const pair of pairs) {
+//             console.log(pair);
+//             if (pair[0] === userId) {
+//               if (pair[1] === password) {
+//                 dispatch(login(true));
+//                 resolve(true);
+//               }
+//             }
+//           }
+//           reject();
+//         });
+//       });
+//     };
+// };
+
+export const loginUser = ({ userId, password }, cb) => {
+  let users = [],
+    pairs;
+  UserApi.logUserIn((allUSers) => {
+    users = allUSers;
+    pairs = users.map((user) => {
+      return [user.email, user.password];
+    });
+    for (const pair of pairs) {
+      console.log(pair);
+      if (pair[0] === userId) {
+        if (pair[1] === password) {
+          return cb(true);
+        }
+      }
+    }
+    return cb(false);
+  });
+};
