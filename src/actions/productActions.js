@@ -49,14 +49,29 @@ export const deleteProduct = (id) => {
 const reviseProduct = (product) => {
   return {
     type: actionTypes.UPDATE_PRODUCT,
-    data: product
+    data: product,
   };
 };
 
 export const updateProduct = (updatedProduct, id) => {
   return (dispatch) => {
-    ProductApi.updateProduct(updatedProduct, id, response => {
+    ProductApi.updateProduct(updatedProduct, id, (response) => {
       dispatch(reviseProduct(response));
     });
   };
-}
+};
+
+const updateViews = (updatedProduct) => {
+  return {
+    type: actionTypes.UPDATE_PRODUCT_VIEWS,
+    data: updatedProduct
+  }
+};
+
+export const incrementViews = (productId) => {
+  return dispatch => {
+    ProductApi.updateProductViews(productId, updatedProduct => {
+      dispatch(updateViews(updatedProduct));
+    })
+  };
+};

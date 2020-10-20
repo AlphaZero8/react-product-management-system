@@ -10,6 +10,7 @@ const EditProduct = (props) => {
     match: { params },
   } = props;
   const { id } = params;
+  console.dir(props);
   const product = props.products.find((product) => product.id === id);
 
   const saveButtonHandler = (product) => {
@@ -34,7 +35,7 @@ const EditProduct = (props) => {
           />
         </div>
       ) : (
-        <h1>Loading</h1>
+        <h1>Product not Found!</h1>
       )}
     </div>
   );

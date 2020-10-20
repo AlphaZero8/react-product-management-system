@@ -28,6 +28,7 @@ class ProductApi {
       manufacturer: productManufacturer,
       price: productPrice,
       quantity: productQuantity,
+      views: 0
     };
     axios
       .post('http://localhost:5000/products', params)
@@ -67,6 +68,25 @@ class ProductApi {
     axios
       .put(`http://localhost:5000/products/${id}`, params)
       .then((res) => cb(res.data))
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+  static updateProductViews(productId, cb) {
+    let params = {};
+    axios
+      .get(`http://localhost:5000/products/${productId}`)
+      .then((res) => {
+        params = { ...res.data };
+        params.views = res.data.views + 1;
+        axios
+          .put(`http://localhost:5000/products/${productId}`, params)
+          .then((res) => cb(res.data))
+          .catch((err) => {
+            throw err;
+          });
+      })
       .catch((err) => {
         throw err;
       });

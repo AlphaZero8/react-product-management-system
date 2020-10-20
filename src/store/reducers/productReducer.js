@@ -20,10 +20,22 @@ const productReducer = (state = initialState, action) => {
       return loadProducts({ products: filteredArray });
 
     case actionTypes.UPDATE_PRODUCT:
-      const {products} = loadProducts(state);
-      const rqProductIndex = products.findIndex(product => product.id === action.data.id);
-      products[rqProductIndex] = {...action.data};
-      return {products};
+      const { products } = loadProducts(state);
+      const rqProductIndex = products.findIndex(
+        (product) => product.id === action.data.id
+      );
+      products[rqProductIndex] = { ...action.data };
+      return { products };
+
+    case actionTypes.UPDATE_PRODUCT_VIEWS:
+      const allProds = loadProducts(state);
+      const allProducts = allProds.products;
+      const prodIndex = allProducts.findIndex(
+        (product) => product.id === action.data.id
+      );
+      allProducts[prodIndex] = { ...action.data };
+      return { products: allProducts };
+
     default:
       return state;
   }

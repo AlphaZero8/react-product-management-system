@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Navbar } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
@@ -15,15 +15,6 @@ import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
 import './MyNavbar.css';
 
 const MyNavbar = (props) => {
-  let [disabled, setDisabled] = useState(false);
-  const { location } = props;
-  if (
-    location.pathname.match('/add-product') ||
-    location.pathname.match('/edit-product')
-  ) {
-    setDisabled(true);
-  }
-
   return (
     <div>
       <Router>
@@ -71,7 +62,6 @@ const MyNavbar = (props) => {
                 type="text"
                 placeholder="Search Product Name"
                 className="mr-sm-2"
-                disabled={disabled}
               />
               <FontAwesomeIcon
                 icon={faSearch}

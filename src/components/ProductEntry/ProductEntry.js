@@ -3,15 +3,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { connect } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
+// import { Link } from 'react-router-dom';
 
 import * as actionCreators from '../../actions/actions';
 import './ProductEntry.css';
 
 const ProductEntry = (props) => {
-  let editProductPath = `edit-product/${props.id}`;
+  let editProductPath = `/edit-product/${props.id}`;
+  let viewProductPath = `/view-product/${props.id}`;
   return (
     <tr>
-      <td>{props.id}</td>
+      <LinkContainer to={viewProductPath}>
+        <td onClick={() => props.updateProductViews(props.id)} className="prod-id">{props.id}</td>
+      </LinkContainer>
       {props.pName ? <td>{props.name}</td> : null}
       {props.pDescription ? <td>{props.description}</td> : null}
       {props.pManufacturer ? <td>{props.manufacturer}</td> : null}
@@ -19,15 +23,16 @@ const ProductEntry = (props) => {
       {props.pQuantity ? <td>{props.quantity}</td> : null}
       <td>
         <LinkContainer to={editProductPath} style={{ marginRight: '15px' }}>
-          {props.isLoggedIn ? (
-            <FontAwesomeIcon icon={faEdit} className="icon" title="Edit" />
-          ) : (
-            <FontAwesomeIcon
+          {/* {props.isLoggedIn ? ( */}
+          <FontAwesomeIcon icon={faEdit} className="icon" title="Edit" />
+          {/* ) 
+          : ( */}
+          {/* <FontAwesomeIcon
               icon={faEdit}
               className="fa-disabled"
               title="Edit"
             />
-          )}
+          )} */}
         </LinkContainer>
         <FontAwesomeIcon
           icon={faTrashAlt}
@@ -55,6 +60,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     deleteProduct: (id) => {
       dispatch(actionCreators.deleteProduct(id));
+    },
+    updateProductViews: (id) => {
+      dispatch(actionCreators.incrementViews(id));
     },
   };
 };

@@ -1,20 +1,49 @@
 {
   "products": [
     {
-      "name": "Dell Inspiron",
-      "description": "A laptop brand",
-      "manufacturer": "Dell company",
-      "price": 50000,
-      "quantity": 99,
-      "id": "e199d4b3-6efa-4fe8-b0ac-57bd5a8c114a"
+      "id": "457e351d-7feb-48d7-8b64-bd1885bcd49e",
+      "name": "Galaxy M31",
+      "description": "A smartphone brand",
+      "manufacturer": "Samsung",
+      "price": 17500,
+      "quantity": 7,
+      "views": 1
     },
     {
-      "id": "06ba3427-c8de-4dc9-96d1-d3fad5afd669",
-      "name": "Galaxy M31",
+      "id": "c607c46a-4733-4217-9cda-eb7b3761adef",
+      "name": "Moto G5 Plus",
       "description": "A smartphone",
-      "manufacturer": "Samsung",
-      "price": 16500,
-      "quantity": 8
+      "manufacturer": "Lenovo",
+      "price": 15000,
+      "quantity": 9,
+      "views": 0
+    },
+    {
+      "id": "a6ddb2d0-1442-474a-84fe-5d12db751c50",
+      "name": "Dell Inspiron",
+      "description": "A laptop ",
+      "manufacturer": "Dell Inc",
+      "price": 50000,
+      "quantity": 10,
+      "views": 0
+    },
+    {
+      "id": "df72213f-8b2e-4ef1-8e4a-297c18d5d76a",
+      "name": "Mi A2",
+      "description": "A smartphone",
+      "manufacturer": "Xiomi",
+      "price": 14000,
+      "quantity": 3,
+      "views": 0
+    },
+    {
+      "id": "a48f537f-457b-4766-9403-1613fcc82de8",
+      "name": "Epson Printer",
+      "description": "A printer",
+      "manufacturer": "Epson company",
+      "price": 22000,
+      "quantity": 17,
+      "views": 1
     }
   ],
   "users": [

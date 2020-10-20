@@ -169,6 +169,7 @@ const formikLogin = withRouter(
       console.log(values);
       logUserIn(values)
         .then(() => {
+          props.logUserIn(true);
           props.history.push('/');
         })
         .catch((err) => {

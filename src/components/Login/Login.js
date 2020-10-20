@@ -5,7 +5,13 @@ import LoginForm from './LoginForm';
 import * as actionCreators from '../../actions/actions';
 
 const Login = (props) => {
-  return <LoginForm login={(userData) => props.loginBtnHandler(userData)} isLoggedIn={props.isLoggedIn} />;
+  return (
+    <LoginForm
+      login={(userData) => props.loginBtnHandler(userData)}
+      logUserIn={(allowLogin) => props.logUserIn(allowLogin)}
+      isLoggedIn={props.isLoggedIn}
+    />
+  );
 };
 
 const mapStateToProps = (state) => {
@@ -18,6 +24,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     loginBtnHandler: (userData) => {
       dispatch(actionCreators.loginUser(userData));
+    },
+    logUserIn: (allowLogin) => {
+      dispatch(actionCreators.login(allowLogin));
     },
   };
 };

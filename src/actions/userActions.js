@@ -31,12 +31,12 @@ export const registerUser = (data) => {
   };
 };
 
-// const login = (allowLogin) => {
-//   return {
-//     type: actionTypes.LOGIN_USER,
-//     payload: allowLogin,
-//   };
-// };
+export const login = (allowLogin) => {
+  return {
+    type: actionTypes.LOGIN_USER,
+    payload: allowLogin,
+  };
+};
 
 // export const loginUser = ({ userId, password }) => {
 //   let users = [],
