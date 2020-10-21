@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {NavLink} from 'react-router-dom';
+// import { LinkContainer } from 'react-router-bootstrap';
 
 import './ViewProduct.css';
 
@@ -28,6 +30,7 @@ const ViewProduct = (props) => {
                 {product.quantity} piece(s), Rs. {product.price}/- per piece
               </h6>
               <p className="card-text">{product.description}</p>
+              <NavLink to="/"><h6>Home</h6></NavLink>
             </div>
           </div>
         </div>

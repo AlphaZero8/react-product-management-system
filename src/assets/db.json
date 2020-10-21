@@ -7,7 +7,7 @@
       "manufacturer": "Samsung",
       "price": 17500,
       "quantity": 7,
-      "views": 1
+      "views": 6
     },
     {
       "id": "c607c46a-4733-4217-9cda-eb7b3761adef",
@@ -16,7 +16,7 @@
       "manufacturer": "Lenovo",
       "price": 15000,
       "quantity": 9,
-      "views": 0
+      "views": 2
     },
     {
       "id": "a6ddb2d0-1442-474a-84fe-5d12db751c50",
@@ -25,7 +25,7 @@
       "manufacturer": "Dell Inc",
       "price": 50000,
       "quantity": 10,
-      "views": 0
+      "views": 4
     },
     {
       "id": "df72213f-8b2e-4ef1-8e4a-297c18d5d76a",
@@ -34,7 +34,7 @@
       "manufacturer": "Xiomi",
       "price": 14000,
       "quantity": 3,
-      "views": 0
+      "views": 1
     },
     {
       "id": "a48f537f-457b-4766-9403-1613fcc82de8",
@@ -43,7 +43,7 @@
       "manufacturer": "Epson company",
       "price": 22000,
       "quantity": 17,
-      "views": 1
+      "views": 3
     }
   ],
   "users": [
