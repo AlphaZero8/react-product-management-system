@@ -83,3 +83,10 @@ export const loginUser = ({ userId, password }, cb) => {
     return cb(false);
   });
 };
+
+export const logout = () => {
+  return {
+    type: actionTypes.LOGOUT_USER,
+    payload: false
+  };
+};

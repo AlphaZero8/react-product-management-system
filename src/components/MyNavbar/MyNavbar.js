@@ -15,6 +15,7 @@ import '../ProductEntry/ProductEntry.css';
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
 import LoginModal from '../Modal/LoginModal';
 import './MyNavbar.css';
+import * as actionCreators from '../../actions/actions';
 
 const MyNavbar = (props) => {
   const [modalShow, setModalShow] = useState(false);
@@ -71,7 +72,11 @@ const MyNavbar = (props) => {
                   </LinkContainer>
                 </div>
               ) : (
-                <Button variant="outline-primary" className="main-nav__item">
+                <Button
+                  variant="outline-primary"
+                  className="main-nav__item"
+                  onClick={props.logUserOut}
+                >
                   Logout
                 </Button>
               )}
@@ -120,4 +125,15 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(withRouter(MyNavbar));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logUserOut: () => {
+      dispatch(actionCreators.logout());
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(MyNavbar));

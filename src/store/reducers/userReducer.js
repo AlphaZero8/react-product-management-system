@@ -18,6 +18,9 @@ const userReducer = (state = initialState, action) => {
       const clonedUsers = loadUsers({ users: state.users });
       return { ...clonedUsers, isLoggedIn: action.payload };
 
+    case actionTypes.LOGOUT_USER:
+      return { ...state, isLoggedIn: action.payload };
+
     default:
       return state;
   }
