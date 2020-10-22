@@ -8,7 +8,8 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOAD_ALL_USERS:
-      return loadUsers({ users: action.payload });
+      const users = loadUsers({ users: action.payload });
+      return { ...users, ...state };
 
     case actionTypes.REGISTER_USER:
       return addUser(state, action.payload);

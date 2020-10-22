@@ -10,6 +10,8 @@ const Login = (props) => {
       login={(userData) => props.loginBtnHandler(userData)}
       logUserIn={(allowLogin) => props.logUserIn(allowLogin)}
       isLoggedIn={props.isLoggedIn}
+      redirectPath={props.redirectPath}
+      hideModalOnLogin={props.onLogin}
     />
   );
 };

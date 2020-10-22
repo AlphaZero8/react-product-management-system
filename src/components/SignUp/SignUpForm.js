@@ -239,8 +239,8 @@ const specialCharRegex = /(?=.*[!@#$%^&*])/;
 const mobileRegex = /^(\+\d{1,3}[- ]?)?\d{10}$/;
 
 const validationSchema = Yup.object({
-  firstName: Yup.string().required('First Required!').min(2, 'Too short!'),
-  lastName: Yup.string().required('Last Required!').min(2, 'Too short!'),
+  firstName: Yup.string().required('Required!').min(2, 'Too short!'),
+  lastName: Yup.string().required('Required!').min(2, 'Too short!'),
   email: Yup.string()
     .email('Please enter a valid email!')
 

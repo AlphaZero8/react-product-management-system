@@ -22,7 +22,12 @@ const Routes = () => {
         render={(props) => <ViewProduct {...props} />}
       />
       <Route path="/sign-up" component={SignUp} />
-      <Route path="/log-in" component={Login} />
+      <Route
+        path="/log-in"
+        render={(props) => (
+          <Login {...props} redirectPath={props.redirectPath} />
+        )}
+      />
     </Switch>
   );
 };

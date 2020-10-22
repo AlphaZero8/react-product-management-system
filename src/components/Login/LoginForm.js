@@ -169,8 +169,13 @@ const formikLogin = withRouter(
       console.log(values);
       logUserIn(values)
         .then(() => {
+          resetForm();
           props.logUserIn(true);
-          props.history.push('/');
+          if (props.redirectPath === '/') {
+            props.hideModalOnLogin();
+          } else {
+            props.history.push(props.redirectPath);
+          }
         })
         .catch((err) => {
           // const userIdField = document.querySelector('#first-field');
