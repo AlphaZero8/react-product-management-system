@@ -4,22 +4,26 @@ import { Modal, Button } from 'react-bootstrap';
 // import { faEdit } from '@fortawesome/free-regular-svg-icons';
 
 import Login from '../Login/Login';
+import './LoginModal.css';
 
 const LoginModal = (props) => {
   return (
     <Modal
       {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
+      dialogClassName="modal-37rem"
+      aria-labelledby="example-custom-modal-styling-title"
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
+        <Modal.Title id="example-custom-modal-styling-title">
           Kindly login to proceed!
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Login redirectPath={props.redirectpath} onLogin={() => props.onHide()} />
+        <Login
+          redirectPath={props.redirectpath}
+          onLogin={() => props.onHide()}
+        />
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

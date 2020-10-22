@@ -11,7 +11,7 @@ const Login = (props) => {
       logUserIn={(allowLogin) => props.logUserIn(allowLogin)}
       isLoggedIn={props.isLoggedIn}
       redirectPath={props.redirectPath}
-      hideModalOnLogin={props.onLogin}
+      hideModal={props.onLogin}
     />
   );
 };

@@ -9,10 +9,11 @@ import * as actionCreators from '../../actions/actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 
-const Login = ({ errors, touched, isSubmitting }) => {
+const Login = ({ errors, touched, isSubmitting, values }) => {
   const style = {
     color: 'red',
   };
+  console.log(values);
   const textType = 'text',
     passwordType = 'password';
 
@@ -116,7 +117,9 @@ const Login = ({ errors, touched, isSubmitting }) => {
             </Form>
           </div>
         </div>
-        <Link to="/sign-up">New User? Register</Link>
+        <Link to="/sign-up" onClick={values.hideModal}>
+          New User? Register
+        </Link>
         {/* <Card.Link href="#">Another Link</Card.Link> */}
       </Card.Body>
     </Card>
@@ -138,10 +141,12 @@ const logUserIn = (userData) => {
 
 const formikLogin = withRouter(
   withFormik({
-    mapPropsToValues({ userId, password }) {
+    mapPropsToValues({ userId, password, hideModal, redirectPath }) {
       return {
         userId: userId || '',
         password: password || '',
+        hideModal: hideModal || null,
+        redirectPath: redirectPath || '/',
       };
     },
     validationSchema: Yup.object().shape({
@@ -172,9 +177,9 @@ const formikLogin = withRouter(
           resetForm();
           props.logUserIn(true);
           if (props.redirectPath === '/') {
-            props.hideModalOnLogin();
+            props.hideModal();
           } else {
-            props.history.push(props.redirectPath);
+            props.history.push(values.redirectPath);
           }
         })
         .catch((err) => {

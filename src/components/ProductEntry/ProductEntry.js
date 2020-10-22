@@ -78,6 +78,7 @@ const ProductEntry = (props) => {
                 }}
               />
               <FontAwesomeIcon
+                style={{ marginLeft: '15px' }}
                 icon={faTrashAlt}
                 className="icon"
                 title="Delete"

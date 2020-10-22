@@ -60,7 +60,7 @@ const MyNavbar = (props) => {
                     >
                       Sign up
                     </Button>
-                  </LinkContainer>{' '}
+                  </LinkContainer>
                   <LinkContainer to="/log-in">
                     <Button
                       variant="outline-success"
@@ -70,7 +70,11 @@ const MyNavbar = (props) => {
                     </Button>
                   </LinkContainer>
                 </div>
-              ) : null}
+              ) : (
+                <Button variant="outline-primary" className="main-nav__item">
+                  Logout
+                </Button>
+              )}
               {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
