@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { connect } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 // import { Link } from 'react-router-dom';
 
 import * as actionCreators from '../../actions/actions';
@@ -34,14 +35,19 @@ const ProductEntry = (props) => {
 
   return (
     <tr>
-      <LinkContainer to={viewProductPath}>
-        <td
-          onClick={() => props.updateProductViews(props.id)}
-          className="prod-id"
-        >
-          {props.id}
-        </td>
-      </LinkContainer>
+      <OverlayTrigger
+        placement="top"
+        overlay={<Tooltip>Click to view details</Tooltip>}
+      >
+        <LinkContainer to={viewProductPath}>
+          <td
+            onClick={() => props.updateProductViews(props.id)}
+            className="prod-id"
+          >
+            {props.id}
+          </td>
+        </LinkContainer>
+      </OverlayTrigger>
       {props.pName ? <td>{props.name}</td> : null}
       {props.pDescription ? <td>{props.description}</td> : null}
       {props.pManufacturer ? <td>{props.manufacturer}</td> : null}
@@ -51,42 +57,57 @@ const ProductEntry = (props) => {
         <div>
           {props.isLoggedIn ? (
             <div>
-              <LinkContainer to={editProductPath}>
-                <FontAwesomeIcon icon={faEdit} className="icon" title="Edit" />
-              </LinkContainer>
-              <FontAwesomeIcon
-                style={{ marginLeft: '15px' }}
-                icon={faTrashAlt}
-                className="icon"
-                title="Delete"
-                onClick={() => {
-                  props.isLoggedIn
-                    ? props.deleteProduct(props.id)
-                    : setModalShow(true);
-                }}
-              />
+              <OverlayTrigger
+                placement="bottom"
+                overlay={<Tooltip>Edit</Tooltip>}
+              >
+                <LinkContainer to={editProductPath}>
+                  <FontAwesomeIcon icon={faEdit} className="icon" />
+                </LinkContainer>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Delete</Tooltip>}
+              >
+                <FontAwesomeIcon
+                  style={{ marginLeft: '15px' }}
+                  icon={faTrashAlt}
+                  className="icon"
+                  onClick={() => {
+                    props.isLoggedIn
+                      ? props.deleteProduct(props.id)
+                      : setModalShow(true);
+                  }}
+                />
+              </OverlayTrigger>
             </div>
           ) : (
             <div>
-              <FontAwesomeIcon
-                icon={faEdit}
-                className="icon"
-                title="Edit"
-                onClick={() => {
-                  setIsEditModal(true);
-                  setModalShow(true);
-                }}
-              />
-              <FontAwesomeIcon
-                style={{ marginLeft: '15px' }}
-                icon={faTrashAlt}
-                className="icon"
-                title="Delete"
-                onClick={() => {
-                  setIsEditModal(false);
-                  setModalShow(true);
-                }}
-              />
+              <OverlayTrigger placement="top" overlay={<Tooltip>Edit</Tooltip>}>
+                <FontAwesomeIcon
+                  icon={faEdit}
+                  className="icon"
+                  title="Edit"
+                  onClick={() => {
+                    setIsEditModal(true);
+                    setModalShow(true);
+                  }}
+                />
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Delete</Tooltip>}
+              >
+                <FontAwesomeIcon
+                  style={{ marginLeft: '15px' }}
+                  icon={faTrashAlt}
+                  className="icon"
+                  onClick={() => {
+                    setIsEditModal(false);
+                    setModalShow(true);
+                  }}
+                />
+              </OverlayTrigger>
             </div>
           )}
           {isEditModal ? (

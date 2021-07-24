@@ -3,7 +3,7 @@ import { Navbar } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
+import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { BrowserRouter as Router, withRouter } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -100,15 +100,24 @@ const MyNavbar = (props) => {
                 placeholder="Search Product Name"
                 className="mr-sm-2"
               />
-              <FontAwesomeIcon
-                icon={faSearch}
-                className="icon main-nav__item"
-              />
-              <FontAwesomeIcon
-                icon={faUserCircle}
-                className="icon main-nav__item"
-                title="View Profile"
-              />
+              <OverlayTrigger
+                placement="bottom"
+                overlay={<Tooltip>Search</Tooltip>}
+              >
+                <FontAwesomeIcon
+                  icon={faSearch}
+                  className="icon main-nav__item"
+                />
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="bottom"
+                overlay={<Tooltip>Hi {props.user.userId || `User`}!</Tooltip>}
+              >
+                <FontAwesomeIcon
+                  icon={faUserCircle}
+                  className="icon main-nav__item"
+                />
+              </OverlayTrigger>
               {/* <Button variant="outline-success" disabled={disabled}>Search</Button> */}
             </Form>
           </Navbar.Collapse>
@@ -122,6 +131,7 @@ const MyNavbar = (props) => {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
+    user: state.user.user,
   };
 };
 

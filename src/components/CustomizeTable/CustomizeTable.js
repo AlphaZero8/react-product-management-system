@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 
 import * as actionTypes from '../../actions/actionTypes';
 import * as checkBoxTypes from './checkBoxTypes';
+import './CustomizeTable.css';
 
 const CustomizeTable = (props) => {
   return (
     <form className="form-control-lg">
       <div className="form-check form-check-inline">
         <input
-          className="form-check-input"
+          className="form-check-input overCheckBox"
           type="checkbox"
           id="all"
           name={checkBoxTypes.SHOW_ALL}
@@ -22,7 +23,7 @@ const CustomizeTable = (props) => {
       </div>
       <div className="form-check form-check-inline">
         <input
-          className="form-check-input"
+          className="form-check-input overCheckBox"
           type="checkbox"
           id="name"
           checked={props.nameChecked}
@@ -35,7 +36,7 @@ const CustomizeTable = (props) => {
       </div>
       <div className="form-check form-check-inline">
         <input
-          className="form-check-input"
+          className="form-check-input overCheckBox"
           type="checkbox"
           id="description"
           checked={props.descriptionChecked}
@@ -48,7 +49,7 @@ const CustomizeTable = (props) => {
       </div>
       <div className="form-check form-check-inline">
         <input
-          className="form-check-input"
+          className="form-check-input overCheckBox"
           type="checkbox"
           id="manufacturer"
           checked={props.manufacturerChecked}
@@ -61,7 +62,7 @@ const CustomizeTable = (props) => {
       </div>
       <div className="form-check form-check-inline">
         <input
-          className="form-check-input"
+          className="form-check-input overCheckBox"
           type="checkbox"
           id="price"
           checked={props.priceChecked}
@@ -74,7 +75,7 @@ const CustomizeTable = (props) => {
       </div>
       <div className="form-check form-check-inline">
         <input
-          className="form-check-input"
+          className="form-check-input overCheckBox"
           type="checkbox"
           id="quantity"
           checked={props.quantityChecked}

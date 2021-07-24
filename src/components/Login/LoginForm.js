@@ -175,7 +175,7 @@ const formikLogin = withRouter(
       logUserIn(values)
         .then(() => {
           resetForm();
-          props.logUserIn(true);
+          props.logUserIn([true, values]);
           if (props.redirectPath === '/') {
             props.hideModal();
           } else {

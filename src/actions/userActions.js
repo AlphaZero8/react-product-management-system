@@ -31,10 +31,10 @@ export const registerUser = (data) => {
   };
 };
 
-export const login = (allowLogin) => {
+export const login = (userData) => {
   return {
     type: actionTypes.LOGIN_USER,
-    payload: allowLogin,
+    payload: userData,
   };
 };
 

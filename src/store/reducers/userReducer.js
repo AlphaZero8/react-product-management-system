@@ -2,6 +2,7 @@ import * as actionTypes from '../../actions/actionTypes';
 import { loadUsers, addUser } from '../utility';
 const initialState = {
   users: [],
+  user: {},
   isLoggedIn: false,
 };
 
@@ -16,7 +17,7 @@ const userReducer = (state = initialState, action) => {
 
     case actionTypes.LOGIN_USER:
       const clonedUsers = loadUsers({ users: state.users });
-      return { ...clonedUsers, isLoggedIn: action.payload };
+      return { ...clonedUsers, isLoggedIn: action.payload[0], user: action.payload[1] };
 
     case actionTypes.LOGOUT_USER:
       return { ...state, isLoggedIn: action.payload };
